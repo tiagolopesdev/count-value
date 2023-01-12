@@ -10,13 +10,16 @@ export const Home = () => {
     }, [count]); 
 
     const handlerChange = (e) => {
+        setCount(parseInt(e.target.value));
+    };
 
-        console.log(e.target.value);
-
-        if (e.target.value === null) {
-            setCount(0);
+    const calcValue = (operation) => {    
+        if (operation) {
+            setCount(count + 1);
         } else {
-            setCount(parseInt(e.target.value));
+            if (count > 0) {
+                setCount(count - 1);
+            }
         }
     };
 
@@ -27,7 +30,8 @@ export const Home = () => {
                 count={count}
             />
             <input value={count} onChange={handlerChange}/>
-            <button onClick={() => setCount(count + 1)}>ADD VALUE</button>
+            <button onClick={() => calcValue(true)}>ADD(+)</button>
+            <button onClick={() => calcValue(false)}>REMOVE(-)</button>
         </>
     );
 }
